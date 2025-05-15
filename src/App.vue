@@ -22,18 +22,19 @@ import { ref, onMounted } from 'vue'
 import Papa from 'papaparse'
 import ProductCard from './components/ProductCard.vue'
 import commonIntegrHelp from './components/commonIntegrHelp.vue'
+import { productData } from './assets/productData.js'
 
 // Holds parsed PCNs from CSV
 const csvData = ref([])
 
 // Local product metadata JSON
-const productData = ref([])
+//const productData = ref([])
 
 // Load product data JSON once on mount
-onMounted(async () => {
-  const res = await fetch('/productData.json') // Make sure this file is in /public
-  productData.value = await res.json()
-})
+//onMounted(async () => {
+  //const res = await fetch('/productData.json') // Make sure this file is in /public
+  //productData.value = await res.json()
+//})
 
 /**
  * Triggered when the user uploads a CSV file
@@ -52,25 +53,6 @@ const handleCSVUpload = (event) => {
 
       // Get rows from row 16 onward
       const pcnRows = rawRows.slice(15)
-
-      // Extract column C (index 2), filter by known PCNs, map with extra info
-      /**
-         const seen = new Set();
-         csvData.value = pcnRows
-        .map(row => row[2]) // get column C
-        .filter(pcn => !!pcn) // remove empty
-        .filter(pcn => {
-          if (seen.has(pcn)) return false
-          seen.add(pcn) 
-          return true
-        })
-        .map(pcn => {
-          // Try to find matching PCN in our metadata
-          const match = productData.value.find(item => pcn.includes(item.PCN))
-          return match || null // ignore unknown PCNs
-        })
-        .filter(item => item !== null) // remove unmatched
-       */
       const matchedPCNs = new Set();
 
       csvData.value = pcnRows
@@ -78,14 +60,17 @@ const handleCSVUpload = (event) => {
         .filter(pcn => !!pcn) // remove empty
         .map(pcn => {
           // Try to find a metadata PCN that exists anywhere inside the CSV PCN
-          return productData.value.find(item => pcn.includes(item.PCN)) || null
+          const matchKey = Object.keys(productData).find(key => pcn.includes(key))
+          if (!matchKey || matchedPCNs.has(matchKey)) return null
+          matchedPCNs.add(matchKey)
+
+          return {
+            PCN: matchKey,
+            productName: productData[matchKey].productName,
+            productDesc: productData[matchKey].productDesc
+          }
         })
-        .filter(item => {
-          if (!item) return false
-          if (matchedPCNs.has(item.PCN)) return false
-          matchedPCNs.add(item.PCN)
-          return true
-        })
+        .filter(Boolean)
         
       },
       error: (err) => {
