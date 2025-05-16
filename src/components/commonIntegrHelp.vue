@@ -1,5 +1,11 @@
 <template>
-     <div>
+    <div>
+        <h1>Selected Engine Type: </h1>
+        <div>
+            {{ enginePCNFound }}
+        </div>
+    </div>
+    <div>
         <h1>Model Building</h1>
         <p>
             There are several common elements to add to most inserters when first building their models.
@@ -52,26 +58,55 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue';
+    import {computed, ref, watch } from 'vue';
+
+    const props = defineProps({
+        csvData: {
+            type: Array,
+            required: true
+        }
+    })
     
+    const enginePCNFound = ref('');
     const hoveredKey = ref(null);
     const images = {
         zOrder: new URL('@/assets/zOrderExample.png', import.meta.url).href,
         screenOutputs: new URL('@/assets/screenOutputsExample.png', import.meta.url).href,
         systemControllers: new URL('@/assets/systemControllers.png', import.meta.url).href,
     }
-</script>
+
+    watch(
+        () => props.csvData,
+        (newData) => {
+            switch (true){
+                case props.csvData.some(item => item.PCN.includes('Y561')):
+                    enginePCNFound.value = 'MPS Engine';
+                    break;
+                case props.csvData.some(item => item.PCN.includes('Y234')):
+                    enginePCNFound.value = 'Rival Engine';
+                    break;
+                case props.csvData.some(item => item.PCN.includes('ZRE0')):
+                    enginePCNFound.value = 'Evolution Engine';
+                    break;
+                case props.csvData.some(item => item.PCN.includes('EPIC')):
+                    enginePCNFound.value = 'Epic Engine';
+                    break;
+            }
+        },
+        { immediate: true, deep: true });
+</script> <!--End Script-->
 
 <style scoped>
 .hover-text {
-  text-decoration: underline dotted;
+    color: blue;
+  text-decoration: underline;
   cursor: pointer;
 }
 
 .preview-image {
   display: block;
-  margin-top: 8px;
-  max-width: 300px;
-  border: 1px solid #ccc;
+  margin-top: 1.2em;
+  max-width: 50%;
+  border: 2px solid #ccc;
 }
 </style>

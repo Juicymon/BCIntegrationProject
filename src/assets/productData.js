@@ -11,7 +11,7 @@ export const productData = {
     }, 
     ZXB1:{
         productName:"Buffer",
-        productDesc: `This is a template`,
+        productDesc: `Placeholder`,
     },
     Y458: {
         productName:"Pinless Cutter",
@@ -20,7 +20,7 @@ export const productData = {
     
     Z571:{
         productName:"Auto-Gapping Folder",
-        productDesc: "This is a template",
+        productDesc: `Placeholder`,
     },
     
     Y561:{
@@ -36,51 +36,63 @@ export const productData = {
     },
     Y56E:{
         productName:"7801 Cognex Camera",
-        productDesc: `This is a template`
+        productDesc: `Placeholder`
     },
     Y554:{
         productName:"MPS Friction Feeder",
-        productDesc: `This is a template`
+        productDesc: `Placeholder`
     },
     ZXB7:{
         productName:"2 Stage Buffer",
-        productDesc: `This is a template`
+        productDesc: `Placeholder`
     },
     ZX0A:{
         productName:"MSE Chassis",
-        productDesc: `This is a template`
+        productDesc: `Placeholder`
     },
     Y234:{
         productName:"Rival Input",
-        productDesc: `This is a template`
+        productDesc: `Placeholder`
     },
     ZX50:{
         productName:"Friction Feeder",
-        productDesc: `This is a template`
+        productDesc: `Placeholder`
     },
     Y371:{
         productName:"Short Footprint Turnover",
-        productDesc: `This is a template`
+        productDesc: `Placeholder`
     },
     Y31H:{
         productName:"Dual 17-Inch V-Bin Rear",
-        productDesc: `This is a template`
+        productDesc: `Placeholder`
     },
     FL7E:{
         productName:"Outfeed Conveyour 9-Foot",
-        productDesc: `This is a template`
+        productDesc: `Placeholder`
     },
     ZRE0:{
         productName:"Evolution Engine",
-        productDesc:`Template`,
+        productDesc:`Placeholder`,
     },
     ZRE1:{
         productName:"Evolution RAT Module",
-        productDesc:`Template`,
+        productDesc:`Placeholder`,
     },
     Y31G:{
         productName:`Single 17" V-BIN REAR`,
-        productDesc:`Temp`,
+        productDesc:`Placeholder`,
+    },
+    EPIC:{
+        productName:"Epic Engine",
+        productDesc:`Placeholder`,
+    },
+    Y370:{
+        productName:"Long Footprint Turnover",
+        productDesc:`Placeholder`,
+    },
+    Y360:{
+        productName:"Print Plus Messenger",
+        productDesc:`Placeholder`,
     },
     Template:{
         productName:"",

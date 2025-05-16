@@ -4,16 +4,13 @@
     <input type="file" accept=".csv" @change="handleCSVUpload" />
 
     <div class="card-container" v-if="csvData.length">
-      <commonIntegrHelp>
-      </commonIntegrHelp>
+      <commonIntegrHelp :csv-data="csvData" />
       <ProductCard
         v-for="(item, index) in csvData"
         :key="item.PCN + index"
         :product="item"
       />
-    </div>
-
-    
+    </div> 
   </div>
 </template>
 
@@ -24,23 +21,7 @@ import ProductCard from './components/ProductCard.vue'
 import commonIntegrHelp from './components/commonIntegrHelp.vue'
 import { productData } from './assets/productData.js'
 
-// Holds parsed PCNs from CSV
 const csvData = ref([])
-
-// Local product metadata JSON
-//const productData = ref([])
-
-// Load product data JSON once on mount
-//onMounted(async () => {
-  //const res = await fetch('/productData.json') // Make sure this file is in /public
-  //productData.value = await res.json()
-//})
-
-/**
- * Triggered when the user uploads a CSV file
- * Parses the CSV, extracts PCNs from column C starting at row 16,
- * filters out PCNs not in productData, and replaces them with enriched info
- */
 const handleCSVUpload = (event) => {
   const file = event.target.files[0]
   if (!file) return
@@ -51,15 +32,13 @@ const handleCSVUpload = (event) => {
     complete: (results) => {
       const rawRows = results.data
 
-      // Get rows from row 16 onward
       const pcnRows = rawRows.slice(15)
       const matchedPCNs = new Set();
 
       csvData.value = pcnRows
-        .map(row => row[2]) // get column C
-        .filter(pcn => !!pcn) // remove empty
+        .map(row => row[2]) 
+        .filter(pcn => !!pcn) 
         .map(pcn => {
-          // Try to find a metadata PCN that exists anywhere inside the CSV PCN
           const matchKey = Object.keys(productData).find(key => pcn.includes(key))
           if (!matchKey || matchedPCNs.has(matchKey)) return null
           matchedPCNs.add(matchKey)
