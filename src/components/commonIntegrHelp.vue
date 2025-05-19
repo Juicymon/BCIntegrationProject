@@ -1,8 +1,29 @@
 <template>
     <div>
         <h1>Selected Engine Type: </h1>
-        <div>
-            {{ enginePCNFound }}
+        <div v-show="enginePCNFound === 'mps'">
+            <h2>MPS Engine</h2>
+            <p>
+                This is an MPS engine
+            </p>
+        </div>
+        <div v-show="enginePCNFound === 'rival'">
+            <h2>Rival Engine</h2>
+            <p>
+                This is a Rival engine
+            </p>
+        </div>
+        <div v-show="enginePCNFound === 'evo'">
+            <h2>Evolution Engine</h2>
+            <p>
+                This is an Evolution engine
+            </p>
+        </div>
+        <div v-show="enginePCNFound === 'epic'">
+            <h2>Epic Engine</h2>
+            <p>
+                This is an Epic engine
+            </p>
         </div>
     </div>
     <div>
@@ -58,7 +79,7 @@
 </template>
 
 <script setup>
-    import {computed, ref, watch } from 'vue';
+    import {ref, watch} from 'vue';
 
     const props = defineProps({
         csvData: {
@@ -80,16 +101,16 @@
         (newData) => {
             switch (true){
                 case props.csvData.some(item => item.PCN.includes('Y561')):
-                    enginePCNFound.value = 'MPS Engine';
+                    enginePCNFound.value = 'mps';
                     break;
                 case props.csvData.some(item => item.PCN.includes('Y234')):
-                    enginePCNFound.value = 'Rival Engine';
+                    enginePCNFound.value = 'rival';
                     break;
                 case props.csvData.some(item => item.PCN.includes('ZRE0')):
-                    enginePCNFound.value = 'Evolution Engine';
+                    enginePCNFound.value = 'evo';
                     break;
                 case props.csvData.some(item => item.PCN.includes('EPIC')):
-                    enginePCNFound.value = 'Epic Engine';
+                    enginePCNFound.value = 'epic';
                     break;
             }
         },
