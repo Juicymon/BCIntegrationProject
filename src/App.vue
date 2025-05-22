@@ -4,42 +4,24 @@
     <input type="file" accept=".csv" @change="handleCSVUpload" />
 
     <div class="card-container" v-if="csvData.length">
-      <commonIntegrHelp>
-      </commonIntegrHelp>
+      <commonIntegrHelp :csv-data="csvData" />
       <ProductCard
         v-for="(item, index) in csvData"
         :key="item.PCN + index"
         :product="item"
       />
-    </div>
-
-    
+    </div> 
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import {ref} from 'vue'
 import Papa from 'papaparse'
 import ProductCard from './components/ProductCard.vue'
 import commonIntegrHelp from './components/commonIntegrHelp.vue'
+import { productData } from './assets/productData.js'
 
-// Holds parsed PCNs from CSV
 const csvData = ref([])
-
-// Local product metadata JSON
-const productData = ref([])
-
-// Load product data JSON once on mount
-onMounted(async () => {
-  const res = await fetch('/productData.json') // Make sure this file is in /public
-  productData.value = await res.json()
-})
-
-/**
- * Triggered when the user uploads a CSV file
- * Parses the CSV, extracts PCNs from column C starting at row 16,
- * filters out PCNs not in productData, and replaces them with enriched info
- */
 const handleCSVUpload = (event) => {
   const file = event.target.files[0]
   if (!file) return
@@ -50,42 +32,24 @@ const handleCSVUpload = (event) => {
     complete: (results) => {
       const rawRows = results.data
 
-      // Get rows from row 16 onward
       const pcnRows = rawRows.slice(15)
-
-      // Extract column C (index 2), filter by known PCNs, map with extra info
-      /**
-         const seen = new Set();
-         csvData.value = pcnRows
-        .map(row => row[2]) // get column C
-        .filter(pcn => !!pcn) // remove empty
-        .filter(pcn => {
-          if (seen.has(pcn)) return false
-          seen.add(pcn) 
-          return true
-        })
-        .map(pcn => {
-          // Try to find matching PCN in our metadata
-          const match = productData.value.find(item => pcn.includes(item.PCN))
-          return match || null // ignore unknown PCNs
-        })
-        .filter(item => item !== null) // remove unmatched
-       */
       const matchedPCNs = new Set();
 
       csvData.value = pcnRows
-        .map(row => row[2]) // get column C
-        .filter(pcn => !!pcn) // remove empty
+        .map(row => row[2]) 
+        .filter(pcn => !!pcn) 
         .map(pcn => {
-          // Try to find a metadata PCN that exists anywhere inside the CSV PCN
-          return productData.value.find(item => pcn.includes(item.PCN)) || null
+          const matchKey = Object.keys(productData).find(key => pcn.includes(key))
+          if (!matchKey || matchedPCNs.has(matchKey)) return null
+          matchedPCNs.add(matchKey)
+
+          return {
+            PCN: matchKey,
+            productName: productData[matchKey].productName,
+            productDesc: productData[matchKey].productDesc
+          }
         })
-        .filter(item => {
-          if (!item) return false
-          if (matchedPCNs.has(item.PCN)) return false
-          matchedPCNs.add(item.PCN)
-          return true
-        })
+        .filter(Boolean)
         
       },
       error: (err) => {

@@ -1,6 +1,5 @@
 <template>
   <div class="product-card">
-    <!-- Header with toggle icon -->
     <div class="card-header" @click="toggleExpanded">
       <h2>
         {{ product.PCN }} - {{ product.productName }} 
@@ -8,7 +7,6 @@
       <span class="toggle-icon">{{ isExpanded ? '−' : '+' }}</span>
     </div>
 
-    <!-- Collapsible section -->
     <div v-if="isExpanded" class="card-body">
       <p v-html="product.productDesc"></p>
     </div>
@@ -18,15 +16,11 @@
 <script setup>
 import { ref } from 'vue'
 
-// Props from parent
 defineProps({
   product: Object
 })
 
-// Local state
 const isExpanded = ref(false)
-
-// Toggle open/close
 const toggleExpanded = () => {
   isExpanded.value = !isExpanded.value
 }
