@@ -9,13 +9,27 @@ export const productData = {
                 </a>
             </p>`
     }, 
-    ZXB1:{
-        productName:"Buffer",
-        productDesc: `Placeholder`,
-    },
     Y458: {
-        productName:"Pinless Cutter",
-        productDesc: `This is a link to somewhere else. <a href='https://www.youtube.com' target='_blank'> Example </a>`
+        productName:"HPI Pinless Cutter - MD Ready",
+        productDesc: `
+                    <h2>Setting Regulators</h2>
+                    <p>The air should be set to the following: </p>
+                    <ul>
+                        <li>
+                            Nip Regulator: 60 PSI
+                        </li>
+                        <li>
+                            Pneumatic Regulator: 50 PSI
+                        </li>
+                        <li>
+                            Blade Regulator: 
+                            <ul>
+                                <li>1/8" Blade = 15 PSI</li>
+                                <li> 1/6" Blade = 10 PSI </li>
+                                <li> 7.8MM Blade = 5-7 PSI </li>
+                            </ul>    
+                        </li>
+                    </ul>`
     },
     
     Z571:{
@@ -28,10 +42,9 @@ export const productData = {
         productDesc: 
             `<ul>
                 <li>
-                <p>When building the model for an MPS, ensure the APS Enhanced Engine and 
-                APS enhanced Sealer are being utilized.
-                </p>
+                <p>When first calibrating the vacuum deck, be sure to install the brake plate. </p>
                 </li>
+                <li>The engine should be ~70 PSI.</li>
             </ul>`
     },
     Y56E:{
@@ -40,10 +53,6 @@ export const productData = {
     },
     Y554:{
         productName:"MPS Friction Feeder",
-        productDesc: `Placeholder`
-    },
-    ZXB7:{
-        productName:"2 Stage Buffer",
         productDesc: `Placeholder`
     },
     ZX0A:{

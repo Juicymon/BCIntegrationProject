@@ -3,9 +3,10 @@
         <h1>Selected Engine Type: </h1>
         <div v-show="enginePCNFound === 'mps'">
             <h2>MPS Engine</h2>
-            <p>
-                This is an MPS engine
-            </p>
+            <ul>
+                <li>When plugging the DSR Ring cables in for an MPS engine, ensure you have connected them as follow: </li>
+                <li>When building the model for an MPS engine, ensure you have selected the <b>'APS Enhanced'</b> options for the engine and sealer. </li>
+            </ul>
         </div>
         <div v-show="enginePCNFound === 'rival'">
             <h2>Rival Engine</h2>
@@ -28,6 +29,10 @@
     </div>
     <div>
         <h1>Model Building</h1>
+
+        <p>
+            If your system does not have a rat, select <b>HEI - SF/AF</b>
+        </p>
         <p>
             There are several common elements to add to most inserters when first building their models.
         </p>
@@ -36,9 +41,8 @@
                 <h2>Z-Order</h2>
                 <p>
                     Once you have your model created, it is important to set the 
-                    <span class="hover-text" @mouseenter="hoveredKey = 'zOrder'" @mouseleave="hoveredKey=null">Z-Order</span> 
+                    <span class="hover-text" @mouseenter="showOverlay('zOrder')" >Z-Order</span> 
                     for each module, starting at the engine.
-                     <img v-show="hoveredKey === 'zOrder'" :src="images.zOrder" class="preview-image" alt= "Example of Z-Order in DC"/>
                 </p>
                 <p>Common practice is to order everything upstream in values of 2 from the engine, and everything downstream in increments of 4. 
                     this allows for additions after the engine without a need to reorder.
@@ -48,8 +52,7 @@
                 <h2>Screen Outputs</h2>
                 <p>
                     There are a few common elements to add in the 
-                    <span class="hover-text" @mouseenter="hoveredKey='screenOutputs'" @mouseleave="hoveredKey=null">screen outputs</span> section:
-                    <img v-show="hoveredKey === 'screenOutputs'" :src="images.screenOutputs" class="preview-image" alt= "Example of Screen Outputs in DC"/>
+                    <span class="hover-text" @mouseenter="showOverlay('screenOutputs')" >screen outputs</span> section:
                 </p>
                 <ul>
                         <li>Cycle Status Background</li>
@@ -62,8 +65,7 @@
                 <h2>System Controller</h2>
                 <p>
                     There are a few common elements to add in the 
-                    <span class="hover-text" @mouseenter="hoveredKey='systemControllers'" @mouseleave="hoveredKey=null">system controller</span> section:
-                    <img v-show="hoveredKey==='systemControllers'" :src="images.systemControllers" class="preview-image" alt="Example of System Controllers">
+                    <span class="hover-text" @mouseenter="showOverlay('systemControllers')" >system controller</span> section:
                 </p>
                 <ul>
                     <li>FOM Operator</li>
@@ -71,10 +73,10 @@
                     <li>FOM Service</li>
                 </ul>
             </li>
-            <li>
-                <h2></h2>
-            </li>
         </ul>
+        <div v-if="overlayVisible" class="overlay">
+            <img :src="images[hoveredKey]" class="overlay-image"  @mouseleave="hideOverlay" />
+        </div>
      </div>
 </template>
 
@@ -90,6 +92,7 @@
     
     const enginePCNFound = ref('');
     const hoveredKey = ref(null);
+    const overlayVisible = ref(false);
     const images = {
         zOrder: new URL('@/assets/zOrderExample.png', import.meta.url).href,
         screenOutputs: new URL('@/assets/screenOutputsExample.png', import.meta.url).href,
@@ -115,19 +118,41 @@
             }
         },
         { immediate: true, deep: true });
+    
+    const showOverlay = (key) =>{
+        hoveredKey.value = key;
+        overlayVisible.value = true;
+    }
+    const hideOverlay = () => {
+        overlayVisible.value = false;
+    }
 </script> <!--End Script-->
 
 <style scoped>
 .hover-text {
     color: blue;
-  text-decoration: underline;
-  cursor: pointer;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
-.preview-image {
-  display: block;
-  margin-top: 1.2em;
-  max-width: 50%;
-  border: 2px solid #ccc;
+.overlay{
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.overlay-image{
+    max-width: 80vw;
+    max-height: 80vh;
+    border: 3px solid white;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
 }
 </style>

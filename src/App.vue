@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import {ref} from 'vue'
 import Papa from 'papaparse'
 import ProductCard from './components/ProductCard.vue'
 import commonIntegrHelp from './components/commonIntegrHelp.vue'
