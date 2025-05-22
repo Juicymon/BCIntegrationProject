@@ -1,10 +1,12 @@
 <template>
     <div>
-        <h1>Selected Engine Type: </h1>
+        <h1>- Selected Engine Type -</h1>
         <div v-show="enginePCNFound === 'mps'">
             <h2>MPS Engine</h2>
             <ul>
-                <li>When plugging the DSR Ring cables in for an MPS engine, ensure you have connected them as follow: </li>
+                <li>Ensure the DSR Cables at the engine have a crossover like this   
+                    <span class="hover-text" @mouseenter="showOverlay('mpsEngineRingCross')" >EXAMPLE</span>.
+                </li>
                 <li>When building the model for an MPS engine, ensure you have selected the <b>'APS Enhanced'</b> options for the engine and sealer. </li>
             </ul>
         </div>
@@ -28,7 +30,7 @@
         </div>
     </div>
     <div>
-        <h1>Model Building</h1>
+        <h1>- Model Building -</h1>
 
         <p>
             If your system does not have a rat, select <b>HEI - SF/AF</b>
@@ -97,7 +99,8 @@
         zOrder: new URL('@/assets/zOrderExample.png', import.meta.url).href,
         screenOutputs: new URL('@/assets/screenOutputsExample.png', import.meta.url).href,
         systemControllers: new URL('@/assets/systemControllers.png', import.meta.url).href,
-    }
+        mpsEngineRingCross: new URL('@/assets/mpsRingCross.png', import.meta.url).href,
+    };
 
     watch(
         () => props.csvData,

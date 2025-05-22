@@ -1,8 +1,11 @@
 <template>
   <div class="app">
-    <h1>Upload CSV File</h1>
-    <input type="file" accept=".csv" @change="handleCSVUpload" />
+    <div class="uploadFileDiv">
+      <h1>Upload CSV File</h1>
+      <input type="file" accept=".csv" @change="handleCSVUpload" />
+    </div>
 
+    <div class="pageHeader"><h1>* {{ workOrderNum }}    -    {{ companyName }} *</h1></div>
     <div class="card-container" v-if="csvData.length">
       <commonIntegrHelp :csv-data="csvData" />
       <ProductCard
@@ -22,6 +25,8 @@ import commonIntegrHelp from './components/commonIntegrHelp.vue'
 import { productData } from './assets/productData.js'
 
 const csvData = ref([])
+const workOrderNum = ref();
+const companyName = ref();
 const handleCSVUpload = (event) => {
   const file = event.target.files[0]
   if (!file) return
@@ -31,9 +36,10 @@ const handleCSVUpload = (event) => {
     skipEmptyLines: true,
     complete: (results) => {
       const rawRows = results.data
-
       const pcnRows = rawRows.slice(15)
       const matchedPCNs = new Set();
+      workOrderNum.value = rawRows[0]?.[0] || '';
+      companyName.value = rawRows[0]?.[3] || '';
 
       csvData.value = pcnRows
         .map(row => row[2]) 
@@ -60,6 +66,16 @@ const handleCSVUpload = (event) => {
 </script> <!--end script-->
 
 <style scoped>
+.uploadFileDiv{
+  padding: 0 0 2em 0;
+}
+.pageHeader{
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  border-top: black solid;
+  text-decoration: underline;
+}
 .app {
   max-width: 800px;
   margin: auto;
@@ -71,7 +87,7 @@ const handleCSVUpload = (event) => {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1em;
 }
 
 .raw-json {
