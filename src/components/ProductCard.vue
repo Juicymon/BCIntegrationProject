@@ -21,7 +21,7 @@ defineProps({
   product: Object
 })
 
-const isExpanded = ref(false)
+const isExpanded = ref(false);
 const toggleExpanded = () => {
   isExpanded.value = !isExpanded.value
 

@@ -1,10 +1,30 @@
 <template>
+   <nav class="navigationBar">
+         <div class="commonLinks">
+            <ul>
+                <li> <a href="https://bluecrestinc.sharepoint.com/sites/DanburyManufacturingOperations/Final%20Work%20Orders/Forms/Descending.aspx?CT=1736953193989&OR=OWA%2DNT%2DMail&CID=f816cac7%2D8e95%2Dce42%2D9d19%2D69bae41c15a8&clickParams=eyJYLUFwcE5hbWUiOiJNaWNyb3NvZnQgT3V0bG9vayBXZWIgQXBwIiwiWC1BcHBWZXJzaW9uIjoiMjAyNTAxMDMwMDIuMTUiLCJPUyI6IldpbmRvd3MgMTEifQ%3D%3D" target='_blank'>
+                    Work Orders</a></li>
+                <li> <a href="https://bluecrestinc.sharepoint.com/sites/DanburyManufacturingOperations/SOW%20Archive/Forms/AllItems.aspx?xsdata=MDV8MDJ8am9leS5zdGVpZ2VyQGJsdWVjcmVzdGluYy5jb218MWRlYTc5MWVlM2ZlNGE2NjFiOTUwOGRkMzU3NTBlY2J8ODMxMGYwMzZmZThkNDcwMmExZTAxNzdlOTMyMDIyN2N8MHwwfDYzODcyNTQ5OTA3MTA5MzAzMXxVbmtub3dufFRXRnBiR1pzYjNkOGV5SkZiWEIwZVUxaGNHa2lPblJ5ZFdVc0lsWWlPaUl3TGpBdU1EQXdNQ0lzSWxBaU9pSlhhVzR6TWlJc0lrRk9Jam9pVFdGcGJDSXNJbGRVSWpveWZRPT18MHx8fA%3D%3D&sdata=WERTK0Fra0d4T21rcERkdUQrWjFZSFZlRkpRQTQrRkFNOTNRdnlCZm5xOD0%3D&CT=1736953241255&OR=OWA-NT-Mail&CID=3d60e83d-0099-2542-d86e-677fff3d1a95&clickParams=eyJYLUFwcE5hbWUiOiJNaWNyb3NvZnQgT3V0bG9vayBXZWIgQXBwIiwiWC1BcHBWZXJzaW9uIjoiMjAyNTAxMDMwMDIuMTUiLCJPUyI6IldpbmRvd3MgMTEifQ%3D%3D" target="_blank">
+                    Statements of Work</a></li>
+                <li><a href="https://bluecrestinc.sharepoint.com/sites/DanburyManufacturingOperations/Tech%20Certification%20Documents/Forms/AllItems.aspx?viewpath=%2Fsites%2FDanburyManufacturingOperations%2FTech%20Certification%20Documents%2FForms%2FAllItems%2Easpx" target="_blank">
+                    Tech Certs</a></li>
+                <li><a href="https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/SitePages/Home.aspx" target="_blank">
+                    Global Product Support</a></li>
+                <li>
+                  <input class="otherUpload" type="file" accept=".csv" @change="handleCSVUpload" />
+                </li>
+            </ul>  
+        </div>
+    </nav>
   <div class="app">
-    <div class="uploadFileDiv">
+    <div v-if="!fileFound" class="uploadFileDiv">
       <h1>Upload CSV File</h1>
       <input type="file" accept=".csv" @change="handleCSVUpload" />
     </div>
 
+<<<<<<< HEAD
+    <div v-if="fileFound" class="pageHeader"><h1>{{ workOrderNum }}    -    {{ companyName }}</h1></div>
+=======
      <div class="extraInfo"> 
       <div class="pageHeader" v-if="isVisible">
         <h1>* {{ workOrderNum }}    -    {{ companyName }} *</h1>
@@ -18,6 +38,7 @@
         </div>
       </div>
     </div>
+>>>>>>> e8b4bb67b8e5503a20d2a5466739e389ad8f4280
     <div class="card-container" v-if="csvData.length">
       <commonIntegrHelp :csv-data="csvData" />
       <ProductCard
@@ -30,7 +51,7 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import {ref, triggerRef} from 'vue'
 import Papa from 'papaparse'
 import ProductCard from './components/ProductCard.vue'
 import commonIntegrHelp from './components/commonIntegrHelp.vue'
@@ -40,15 +61,23 @@ const isVisible = ref(false);
 const csvData = ref([])
 const workOrderNum = ref();
 const companyName = ref();
+<<<<<<< HEAD
+const fileFound = ref(false);
+=======
 const salesRep = ref();
 const customerDev = ref();
 const manager = ref();
+>>>>>>> e8b4bb67b8e5503a20d2a5466739e389ad8f4280
 
 const handleCSVUpload = (event) => {
   const file = event.target.files[0]
   if (!file) return
 
+<<<<<<< HEAD
+  fileFound.value = true;  
+=======
   isVisible.value = true;
+>>>>>>> e8b4bb67b8e5503a20d2a5466739e389ad8f4280
 
   Papa.parse(file, {
     header: false,
@@ -84,7 +113,8 @@ const handleCSVUpload = (event) => {
       error: (err) => {
         console.error('CSV parse error:', err)
       }
-  })
+  
+  }) 
 }
 </script> <!--end script-->
 
@@ -96,6 +126,11 @@ const handleCSVUpload = (event) => {
   padding: 0 0 2em 0;
 }
 .pageHeader{
+<<<<<<< HEAD
+  justify-content: center;
+  text-decoration: underline;
+  display: flex;
+=======
   display: flex;
   justify-content: center;
   align-items: center;
@@ -106,9 +141,10 @@ const handleCSVUpload = (event) => {
 .contactInfo{
   padding-left: 20px;
   margin: 20px;
+>>>>>>> e8b4bb67b8e5503a20d2a5466739e389ad8f4280
 }
 .app {
-  max-width: 800px;
+  max-width: 80%;
   margin: auto;
   padding: 2rem;
   font-family: sans-serif;
@@ -119,4 +155,32 @@ const handleCSVUpload = (event) => {
   gap: 1rem;
   margin-top: 1em;
 }
+<<<<<<< HEAD
+.navigationBar ul{
+  list-style-type: none;
+  margin:0;
+  padding: 0;
+  background: gray;
+  overflow: hidden;
+}
+.navigationBar li{
+  float: left;
+}
+.navigationBar li a{
+  color: white;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.navigationBar li a:hover{
+  background: blue;
+}
+.otherUpload{
+  color: transparent;
+  padding: 1em;
+}
+
+=======
+>>>>>>> e8b4bb67b8e5503a20d2a5466739e389ad8f4280
 </style> <!--end Style-->

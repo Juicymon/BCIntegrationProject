@@ -1,5 +1,8 @@
 <template>
     <div>
+        <h1>- Before Building a Model -</h1>
+        <div>
+        </div>
         <h1>- Selected Engine Type -</h1>
         <div v-show="enginePCNFound === 'mps'">
             <h2>MPS Engine</h2>
@@ -12,31 +15,23 @@
         </div>
         <div v-show="enginePCNFound === 'rival'">
             <h2>Rival Engine</h2>
-            <p>
-                This is a Rival engine
-            </p>
         </div>
         <div v-show="enginePCNFound === 'evo'">
             <h2>Evolution Engine</h2>
-            <p>
-                This is an Evolution engine
-            </p>
         </div>
         <div v-show="enginePCNFound === 'epic'">
             <h2>Epic Engine</h2>
             <p>
-                This is an Epic engine
+                <a href="https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Parts%20Lists/Epic%20v3%20Auto%20Adjust%20Chassis%20and%20Engine%20Parts%20Guide.pdf#search=epic"
+                target="_blank">Epic V3 Engine and Chassis Parts Guide</a>
             </p>
         </div>
     </div>
     <div>
+        <!-- May need to add logic to detect if the user has NO Rat-->
         <h1>- Model Building -</h1>
-
         <p>
-            If your system does not have a rat, select <b>HEI - SF/AF</b>
-        </p>
-        <p>
-            There are several common elements to add to most inserters when first building their models.
+            There are several common elements to add to every model.
         </p>
         <ul>
             <li>
@@ -150,7 +145,6 @@
     align-items: center;
     z-index: 1000;
 }
-
 .overlay-image{
     max-width: 80vw;
     max-height: 80vh;
