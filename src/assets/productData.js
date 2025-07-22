@@ -46,6 +46,11 @@ export const productData = {
                             <li>
                                 <a href='https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Service%20Manuals%20and%20Procedures/HPI%20Cutter%20Y474,%20Y475,%20Y484,%20Y485%20Service%20Manual.pdf#search=pinless%20cutter'
                                 target='_blank'>Service Guide</a>
+                            </li>
+                            <li>
+                                <a href='https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Operator%20Guides/HPI%20Pinless%20Cutter%20Operator%20Guide.pdf#search=pinless%20cutter'
+                                target='_blank'>Operator Guide</a>
+                            </li>
                         </ul>
                     </p>
                     `
@@ -62,26 +67,23 @@ export const productData = {
                             </li>
                             <li>
                                 <a href='https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Service%20Manuals%20and%20Procedures/Auto%20Gapping%20Folder%20Service%20Guide.pdf#search=z571' 
-                                target='_blank'>Service Guide </a>
+                                target='_blank'>Service Guide</a>
                             </li>
                         </ul>
                     </p>
-                    `,
+                    `
     },
     
     Y561:{
         productName:"MPS Engine",
-        productDesc: 
-            `<ul>
-                <li>
-                <p>When first calibrating the vacuum deck, be sure to install the brake plate. </p>
-                </li>
-                <li>The engine should be ~70 PSI.</li>
-            </ul>`
-    },
-    Y56E:{
-        productName:"7801 Cognex Camera",
-        productDesc: `Placeholder`
+        productDesc:`
+                    <ul>
+                        <li>
+                            <p>When first calibrating the vacuum deck, be sure to install the brake plate. </p>
+                        </li>
+                        <li>The engine should be ~70 PSI.</li>
+                    </ul>
+                    `
     },
     Y554:{
         productName:"Epic MPS Friction Feeder",
@@ -107,35 +109,87 @@ export const productData = {
                             </li>
                         </ul>
                     </p>
-                    `,
-    },
-    ZX0A:{
-        productName:"MSE Chassis",
-        productDesc: `Placeholder`
+                    `
     },
     Y234:{
-        productName:"Rival Input",
-        productDesc: `Placeholder`
-    },
-    ZX50:{
-        productName:"Friction Feeder",
-        productDesc: `Placeholder`
+        productName:"Mid-Tier Input",
+        productDesc:`
+                    <p>
+                        <ul>
+                            <li>
+                                <a href='https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Parts%20Lists/Mid-Tier%20Input%20Y234%20Y244%20Parts%20List.pdf#search=y234'
+                                target='_blank'>Parts List</a>
+                            </li>
+                            <li>
+                                <a href='https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Service%20Manuals%20and%20Procedures/Mid%20Tier%20Input%20Y234%20Feeder%20Accumulator%20Folder%20Service%20Manual.pdf#search=y234'
+                                target='_blank'>Service Manual</a>
+                            </li>
+                            <li>
+                                <a href='https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Operator%20Guides/Mid%20Tier%20Input%20Y234%20Operator%20Guide.pdf#search=y234'
+                                target='_blank'>Operator Guide</a>
+                            </li>
+                        </ul>
+                    </p>
+                    `
     },
     ZRE0:{
         productName:"Evolution Engine",
-        productDesc:`Placeholder`,
-    },
-    ZRE1:{
-        productName:"Evolution RAT Module",
-        productDesc:`Placeholder`,
+        productDesc:`
+                    <p>
+                        <ul>
+                            <li>
+                                <a href='https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Operator%20Guides/Evolution%20Inserter%20Operator%20Guide.pdf#search=zre0'
+                                target='_blank'>Operator Guide</a>
+                            </li>
+                            <li>
+                                <a href='https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Service%20Manuals%20and%20Procedures/Evolution%20Service%20Guide%20Vol2.pdf#search=zre0'
+                                target='_blank'>Service Guide</a>
+                            </li>
+                        </ul>
+                    </p>
+                    `
     },
     EPIC:{
         productName:"Epic Engine",
-        productDesc:`Placeholder`,
+        productDesc:`
+                    <p>
+                        <ul>
+                            <li>
+                            </li>
+                        </ul>
+                    </p>
+                    `
     },
     Y360:{
         productName:"Print Plus Messenger",
-        productDesc:`Placeholder`,
+        productDesc:`
+                    <p>
+                        <ul>
+                            <li>
+                            </li>
+                        </ul>
+                    </p>
+                    `
+    },
+    Y470:{
+        productName:"HEI Accumulator",
+        productDesc:`
+                    <p>
+                        <ul>
+                            <li>
+                                <a href='https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Parts%20Lists/Y470%20HPI%20Dual%20Accumulator%20Parts%20List.pdf#search=y470'
+                                target='_blank'>Parts List</a>
+                            </li>
+                            <li>
+                                <a href='https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Service%20Manuals%20and%20Procedures/HPI%20Accumulator%20Y470%20Service%20Manual.pdf#search=y470'
+                                target='_blank'>Service Manual</a>
+                            </li>
+                            <li>
+                                <a href='https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Operator%20Guides/HPI%20Dual%20Accumulator%20and%20Stand%20Alone%20Folder%20Y470,%20Y471%20Operator%20Guide.pdf#search=y470'
+                                target='_blank'>Operator Guide</a>
+                        </ul>
+                    </p>
+                    `
     },
     Template:{
         productName:"",
@@ -146,6 +200,6 @@ export const productData = {
                             </li>
                         </ul>
                     </p>
-                    `,
+                    `
     },
 };
