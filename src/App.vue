@@ -22,7 +22,23 @@
       <input type="file" accept=".csv" @change="handleCSVUpload" />
     </div>
 
+<<<<<<< HEAD
     <div v-if="fileFound" class="pageHeader"><h1>{{ workOrderNum }}    -    {{ companyName }}</h1></div>
+=======
+     <div class="extraInfo"> 
+      <div class="pageHeader" v-if="isVisible">
+        <h1>* {{ workOrderNum }}    -    {{ companyName }} *</h1>
+        <div class="contactInfo" v-if="temp">
+          <h2>Contact</h2>
+          <ul>
+            <li>Sales: {{ salesRep }}</li>
+            <li>CDE: {{ customerDev }}</li>
+            <li>Manager: {{ manager }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+>>>>>>> e8b4bb67b8e5503a20d2a5466739e389ad8f4280
     <div class="card-container" v-if="csvData.length">
       <commonIntegrHelp :csv-data="csvData" />
       <ProductCard
@@ -41,16 +57,27 @@ import ProductCard from './components/ProductCard.vue'
 import commonIntegrHelp from './components/commonIntegrHelp.vue'
 import { productData } from './assets/productData.js'
 
+const isVisible = ref(false);
 const csvData = ref([])
 const workOrderNum = ref();
 const companyName = ref();
+<<<<<<< HEAD
 const fileFound = ref(false);
+=======
+const salesRep = ref();
+const customerDev = ref();
+const manager = ref();
+>>>>>>> e8b4bb67b8e5503a20d2a5466739e389ad8f4280
 
 const handleCSVUpload = (event) => {
   const file = event.target.files[0]
   if (!file) return
 
+<<<<<<< HEAD
   fileFound.value = true;  
+=======
+  isVisible.value = true;
+>>>>>>> e8b4bb67b8e5503a20d2a5466739e389ad8f4280
 
   Papa.parse(file, {
     header: false,
@@ -59,6 +86,10 @@ const handleCSVUpload = (event) => {
       const rawRows = results.data
       const pcnRows = rawRows.slice(15)
       const matchedPCNs = new Set();
+
+      // salesRep.value = rawRows[0]?.[5] || '';
+      // customerDev.value = rawRows[1]?.[5] || '';
+      // manager.value = rawRows[7]?.[5] || '';
       workOrderNum.value = rawRows[0]?.[0] || '';
       companyName.value = rawRows[0]?.[3] || '';
 
@@ -88,13 +119,29 @@ const handleCSVUpload = (event) => {
 </script> <!--end script-->
 
 <style scoped>
+.extraInfo{
+  border-top: black solid;
+}
 .uploadFileDiv{
   padding: 0 0 2em 0;
 }
 .pageHeader{
+<<<<<<< HEAD
   justify-content: center;
   text-decoration: underline;
   display: flex;
+=======
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pageHeader h1{
+   text-decoration: underline black .1em;
+}
+.contactInfo{
+  padding-left: 20px;
+  margin: 20px;
+>>>>>>> e8b4bb67b8e5503a20d2a5466739e389ad8f4280
 }
 .app {
   max-width: 80%;
@@ -102,13 +149,13 @@ const handleCSVUpload = (event) => {
   padding: 2rem;
   font-family: sans-serif;
 }
-
 .card-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   margin-top: 1em;
 }
+<<<<<<< HEAD
 .navigationBar ul{
   list-style-type: none;
   margin:0;
@@ -134,4 +181,6 @@ const handleCSVUpload = (event) => {
   padding: 1em;
 }
 
+=======
+>>>>>>> e8b4bb67b8e5503a20d2a5466739e389ad8f4280
 </style> <!--end Style-->

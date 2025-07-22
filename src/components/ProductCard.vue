@@ -1,5 +1,5 @@
 <template>
-  <div class="product-card">
+  <div class="product-card" ref="cardRef">
     <div class="card-header" @click="toggleExpanded">
       <h2>
         {{ product.PCN }} - {{ product.productName }} 
@@ -14,8 +14,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 
+const cardRef = ref(null);
 defineProps({
   product: Object
 })
@@ -23,6 +24,15 @@ defineProps({
 const isExpanded = ref(false);
 const toggleExpanded = () => {
   isExpanded.value = !isExpanded.value
+
+  if(isExpanded.value){
+    nextTick(() =>{
+      cardRef.value?.scrollIntoView({
+        behavior: 'smooth', 
+        block: 'center'
+      });
+    });
+  };
 }
 </script> <!--end script-->
 
