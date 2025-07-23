@@ -2,9 +2,25 @@
     <div>
         <h1>- Before Building a Model -</h1>
         <div>
+            <h2>Board Flashing</h2>
+            <p>
+                Before starting DC for the first time, you may want to flash the fireware of all your boards. 
+                If DC is already running, please exit DC and ensure the RTP has stopped. 
+                To flash the boards, do the following:
+            </p>
+            <ol>
+                <li>Open the BlueCrest Tools folder on the desktop and launch the board-flash utility.</li>
+                <li>Check your tech cert for the correct version of both DSP and FPGA to be flashing with.</li>
+                <li></li>
+            </ol>
         </div>
+
         <h1>- Selected Engine Type -</h1>
-        <div v-show="enginePCNFound === 'mps'">
+        <EpicEngine v-if="enginePCNFound=== 'epic'"/>
+        <RivalEngine v-if="enginePCNFound==='rival'"/>
+        <EvoEngine v-if="enginePCNFound==='evo'" />
+        <MpsEngine v-if="enginePCNFound==='mps'" />
+       <!--  <div v-show="enginePCNFound === 'mps'">
             <h2>MPS Engine</h2>
             <ul>
                 <li>Ensure the DSR Cables at the engine have a crossover like this   
@@ -13,15 +29,17 @@
                 <li>When building the model for an MPS engine, ensure you have selected the <b>'APS Enhanced'</b> options for the engine and sealer. </li>
             </ul>
         </div>
-        <div v-show="enginePCNFound === 'rival'">
+ -->
+     <!--    <div v-show="enginePCNFound === 'rival'">
             <h2>Rival Engine</h2>
         </div>
+
         <div v-show="enginePCNFound === 'evo'">
             <h2>Evolution Engine</h2>
-        </div>
-        <div v-show="enginePCNFound === 'epic'">
+        </div -->
+
+        <!-- <div v-show="enginePCNFound === 'epic'">
             <h2>Epic Engine</h2>
-            <p>
                 <ul>
                     <li>
                         <a href="https://bluecrestinc.sharepoint.com/sites/ProductSupportContent/Shared%20Documents/Product%20Support%20Content/Parts%20Lists/Epic%20v3%20Auto%20Adjust%20Chassis%20and%20Engine%20Parts%20Guide.pdf#search=epic"
@@ -32,9 +50,7 @@
                         target="_blank">Epic Service Manual</a>
                     </li>
                 </ul>
-               
-            </p>
-        </div>
+        </div> -->
     </div>
     <div>
         <!-- May need to add logic to detect if the user has NO Rat-->
@@ -50,7 +66,8 @@
                     <span class="hover-text" @mouseenter="showOverlay('zOrder')" >Z-Order</span> 
                     for each module, starting at the engine.
                 </p>
-                <p>Common practice is to order everything upstream in values of 2 from the engine, and everything downstream in increments of 4. 
+                <p>
+                    Common practice is to order everything upstream in values of 2 from the engine, and everything downstream in increments of 4. 
                     this allows for additions after the engine without a need to reorder.
                 </p>
             </li>
@@ -88,6 +105,12 @@
 
 <script setup>
     import {ref, watch} from 'vue';
+    import EpicEngine from './epicEngine.vue';
+    import RivalEngine from './rivalEngine.vue';
+    import EvoEngine from './evoEngine.vue';
+    import MpsEngine from './mpsEngine.vue';
+
+    const enginePCNFound = ref('');
 
     const props = defineProps({
         csvData: {
@@ -95,16 +118,24 @@
             required: true
         }
     })
-    
-    const enginePCNFound = ref('');
-    const hoveredKey = ref(null);
+
+    import { useImageOverlay } from './useImageOverlay';
+        const {
+            hoveredKey,
+            images,
+            showOverlay,
+            hideOverlay,
+            overlayVisible
+        } = useImageOverlay()
+
+    /* const hoveredKey = ref(null);
     const overlayVisible = ref(false);
     const images = {
-        zOrder: new URL('@/assets/zOrderExample.png', import.meta.url).href,
-        screenOutputs: new URL('@/assets/screenOutputsExample.png', import.meta.url).href,
-        systemControllers: new URL('@/assets/systemControllers.png', import.meta.url).href,
-        mpsEngineRingCross: new URL('@/assets/mpsRingCross.png', import.meta.url).href,
-    };
+        zOrder: new URL('@/assets/images/zOrderExample.png', import.meta.url).href,
+        screenOutputs: new URL('@/assets/images/screenOutputsExample.png', import.meta.url).href,
+        systemControllers: new URL('@/assets/images/systemControllers.png', import.meta.url).href,
+        mpsEngineRingCross: new URL('@/assets/images/mpsRingCross.png', import.meta.url).href,
+    }; */
 
     watch(
         () => props.csvData,
@@ -124,19 +155,19 @@
                     break;
             }
         },
-        { immediate: true, deep: true });
+        {immediate: true, deep: true});
     
-    const showOverlay = (key) =>{
+   /*  const showOverlay = (key) =>{
         hoveredKey.value = key;
         overlayVisible.value = true;
     }
     const hideOverlay = () => {
         overlayVisible.value = false;
-    }
+    } */
 </script> <!--End Script-->
 
 <style scoped>
-.hover-text {
+/* .hover-text {
     color: blue;
     text-decoration: underline;
     cursor: pointer;
@@ -160,5 +191,5 @@
     border: 3px solid white;
     border-radius: 8px;
     transition: opacity 0.3s ease;
-}
+} */
 </style>

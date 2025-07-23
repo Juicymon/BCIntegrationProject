@@ -1,4 +1,5 @@
 <template>
+  
    <nav class="navigationBar">
          <div class="commonLinks">
             <ul>
@@ -16,6 +17,7 @@
             </ul>  
         </div>
     </nav>
+
   <div class="app">
     <div v-if="!fileFound" class="uploadFileDiv">
       <h1>Upload CSV File</h1>
@@ -23,6 +25,7 @@
     </div>
 
     <div v-if="fileFound" class="pageHeader"><h1>{{ workOrderNum }}    -    {{ companyName }}</h1></div>
+
     <div class="card-container" v-if="csvData.length">
       <commonIntegrHelp :csv-data="csvData" />
       <ProductCard
@@ -31,6 +34,7 @@
         :product="item"
       />
     </div> 
+    
   </div>
 </template>
 
