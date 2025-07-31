@@ -1,5 +1,4 @@
 <template>
-  
    <nav class="navigationBar">
          <div class="commonLinks">
             <ul>
@@ -102,11 +101,17 @@ const handleCSVUpload = (event) => {
 }
 .uploadFileDiv{
   padding: 0 0 2em 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .pageHeader{
   justify-content: center;
   text-decoration: underline;
   display: flex;
+}
+.pageHeader h1{
+  font-size: 2.75em
 }
 .app {
   max-width: 80%;
@@ -144,5 +149,10 @@ const handleCSVUpload = (event) => {
   color: transparent;
   padding: 1em;
 }
-
+.commonLinks a{
+  border-radius: .3em;
+}
+.commonLinks li{
+  padding: .2em;
+}
 </style> <!--end Style-->

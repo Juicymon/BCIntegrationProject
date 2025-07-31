@@ -40,9 +40,9 @@ const toggleExpanded = () => {
 <style scoped>
 .product-card {
   border: 1px solid #ccc;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   margin-bottom: 1rem;
-  border-radius: 8px;
+  border-radius: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease-in-out;
 }
@@ -53,9 +53,11 @@ const toggleExpanded = () => {
   align-items: center;
   cursor: pointer;
 }
-
+.card-header h2{
+  font-size: 1.35em;
+}
 .toggle-icon {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-weight: bold;
   user-select: none;
 }

@@ -3,7 +3,8 @@ export const productData = {
         productName: 'Smart Stacker',
         productDesc: `
                     <p>
-                        Please ensure the shipping brackets have been removed prior to running the system. Also check they have been reinstalled prior to breakdown. \nLink(s) to 
+                        Please ensure the shipping brackets have been removed prior to running the system.
+                         Also check they have been reinstalled prior to breakdown. \nLink(s) to 
                     </p>
                     <ul>
                         <li> 
@@ -76,7 +77,7 @@ export const productData = {
         productDesc:`
                     <ul>
                         <li>
-                            <p>When first calibrating the vacuum deck, be sure to install the brake plate. </p>
+                            <p>When first calibrating the vacuum deck, be sure to install the brake plate.</p>
                         </li>
                         <li>The engine should be ~70 PSI.</li>
                     </ul>
